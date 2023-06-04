@@ -20,6 +20,12 @@ class MovieHasTypeFixtures extends Fixture
         return 5;
     }
 
+    public function __construct(
+        private MovieRepository $movieRepo,
+        private TypeRepository $typeRepo
+    ) {
+    }
+
     public function load(ObjectManager $manager)
     {
         $this->loadData($manager);
@@ -45,6 +51,9 @@ class MovieHasTypeFixtures extends Fixture
 
     private function getHardData(): array
     {
+        // $movies = $this->movieRepo->findAll();
+        // $types = $this->typeRepo->findAll();
+
         return [
             [342, 342],
             [543, 543],
