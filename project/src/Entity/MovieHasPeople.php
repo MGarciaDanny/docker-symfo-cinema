@@ -24,12 +24,6 @@ class MovieHasPeople
     #[ORM\Column(nullable: true, columnDefinition: "enum('PRINCIPAL','SECONDAIRE')")]
     private ?string $signifiance = null;
 
-    public function __construct($movie, $people)
-    {
-        $this->movie= $movie;
-        $this->people= $people;
-    }
-
     public function getMovie(): ?Movie
     {
         return $this->movie;
