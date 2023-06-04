@@ -39,21 +39,6 @@ class PeopleRepository extends ServiceEntityRepository
         }
     }
 
-    //    /**
-    //     * @return People[] Returns an array of People objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
     public function findById($value): ?People
     {
         return $this->createQueryBuilder('People')
