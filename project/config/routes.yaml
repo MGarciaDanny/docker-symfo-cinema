@@ -1,0 +1,7 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+# home_controller:
+#     path: /
+#     controller: App\Controller\HomeController::home
