@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MovieHasPeopleRepository::class)]
 class MovieHasPeople
 {
-    const SIGNIFIANCE = ['PRINCIPAL', 'SECONDAIRE'];
+    const SIGNIFICANCE = ['PRINCIPAL', 'SECONDAIRE'];
 
     #[ORM\Id]
     #[ORM\ManyToOne]
@@ -21,8 +21,11 @@ class MovieHasPeople
     #[ORM\JoinColumn(nullable: false)]
     private ?People $people = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $role = null;
+
     #[ORM\Column(nullable: true, columnDefinition: "enum('PRINCIPAL','SECONDAIRE')")]
-    private ?string $signifiance = null;
+    private ?string $significance = null;
 
     public function getMovie(): ?Movie
     {
@@ -47,15 +50,26 @@ class MovieHasPeople
 
         return $this;
     }
-
-    public function getSignifiance(): ?string
+    public function getRole(): ?string
     {
-        return $this->signifiance;
+        return $this->role;
     }
 
-    public function setSignifiance(?string $signifiance): self
+    public function setRole(?string $role): self
     {
-        $this->signifiance = $signifiance;
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getSignificance(): ?string
+    {
+        return $this->significance;
+    }
+
+    public function setSignificance(?string $significance): self
+    {
+        $this->significance = $significance;
 
         return $this;
     }
