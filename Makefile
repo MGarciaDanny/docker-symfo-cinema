@@ -18,6 +18,10 @@ init: ## Init the project
 	$(MAKE) npm-install
 	@$(call GREEN,"The application is available at: http://127.0.0.1:8000/.")
 
+full-init: ## Init for testing the projet
+	$(MAKE) init
+	$(MAKE) database-init
+
 cache-clear: ## Clear cache
 	$(SYMFONY_CONSOLE) cache:clear
 
