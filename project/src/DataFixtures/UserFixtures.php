@@ -36,7 +36,7 @@ class UserFixtures extends Fixture
                 ->setName($name)
                 ->setFirstname($firstname)
                 ->setEmail($email)
-                ->setPassword(password_hash($password, PASSWORD_BCRYPT, ['cost' => 11]))
+                ->setPassword(password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]))
                 ->setCreatedAt(new DateTime());
             $manager->persist($entity);
         }
@@ -46,7 +46,7 @@ class UserFixtures extends Fixture
     private function getHardData(): array
     {
         return [
-            ['Danny', 'Garcia', 'admin@lbi.fr', 'P4s$woRd!'],
+            ['Danny', 'Garcia', 'admin@lbi.fr', 'password'],
             ['God', 'Kratos', 'god@of.war', 'BOY'],
         ];
     }
