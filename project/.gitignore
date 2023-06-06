@@ -25,3 +25,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> lexik/jwt-authentication-bundle ###
+# J'ai fais exprès de les garder pour installer le projet facilement
+# /config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
