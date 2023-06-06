@@ -6,15 +6,17 @@ use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('email', 'Email déjà existant.')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]  
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -29,12 +31,36 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $roles = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->roles = 'ROLE_USER';
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function getRoles(): array
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        $this->password = null;
+    }
+
+    public function setRoles(string $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
     }
 
     public function getId(): ?int
@@ -100,11 +126,6 @@ class User
         $this->created_at = $created_at;
 
         return $this;
-    }
-
-    public function eraseCredentials(): void
-    {
-        $this->password = null;
     }
 
     public function getUserIdentifier(): string
