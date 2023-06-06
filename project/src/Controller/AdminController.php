@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PublicController extends AbstractController
+class PrivateController extends AbstractController
 {
-    #[Route('/api/public/movie', name: 'app.get.movie')]
+    #[Route('/api/admin/movie', name: 'app.admin.movie')]
     public function movie(): Response
     {
-        return $this->json(['test'=>'test']);
+        return $this->json(['EDIT'=>'YES']);
     }
 }
