@@ -8,9 +8,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PublicController extends AbstractController
 {
+    #[Route('/hello', name: 'app.hello')]
+    public function hello(): Response
+    {
+        return $this->json([
+            'Hello' => 'world'
+        ]);
+    }
+
     #[Route('/api/public/movie', name: 'app.get.movie')]
     public function movie(): Response
     {
-        return $this->json(['test'=>'test']);
+        return $this->json(['movie'=>'todo']);
     }
 }

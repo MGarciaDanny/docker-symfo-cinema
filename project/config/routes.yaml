@@ -8,7 +8,4 @@ kernel:
 
 api_connection_check:
     path: /api/connection_check
-
-# home_controller:
-#     path: /
-#     controller: App\Controller\HomeController::home
+    

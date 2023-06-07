@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PrivateController extends AbstractController
+class AdminController extends AbstractController
 {
     #[Route('/api/admin/movie', name: 'app.admin.movie')]
     public function movie(): Response

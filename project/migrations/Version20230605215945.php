@@ -33,6 +33,8 @@ final class Version20230605215945 extends AbstractMigration
         $this->addSql('ALTER TABLE movie_has_people ADD CONSTRAINT FK_EDC40D813147C936 FOREIGN KEY (people_id) REFERENCES people (id)');
         $this->addSql('ALTER TABLE movie_has_type ADD CONSTRAINT FK_D7417FB8F93B6FC FOREIGN KEY (movie_id) REFERENCES movie (id)');
         $this->addSql('ALTER TABLE movie_has_type ADD CONSTRAINT FK_D7417FBC54C8C93 FOREIGN KEY (type_id) REFERENCES type (id)');
+    
+        $this->addSql('ALTER TABLE user ADD roles VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema): void
