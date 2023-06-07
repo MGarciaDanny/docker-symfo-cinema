@@ -1,4 +1,10 @@
 {
+    "api-platform/core": {
+        "version": "3.1",
+        "recipe": {
+            "version": "3.0"
+        }
+    },
     "doctrine/annotations": {
         "version": "2.0",
         "recipe": {
@@ -58,6 +64,9 @@
         "files": [
             "config/packages/lexik_jwt_authentication.yaml"
         ]
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.3.1"
     },
     "phpunit/phpunit": {
         "version": "9.6",
