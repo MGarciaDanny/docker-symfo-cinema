@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    #[Route('/api/admin/movie', name: 'app.admin.movie')]
+    #[Route('/admin/movie', name: 'app.admin.movie')]
     public function movie(): Response
     {
         return $this->json(['EDIT'=>'YES']);

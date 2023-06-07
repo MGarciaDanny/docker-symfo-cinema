@@ -7,5 +7,5 @@ kernel:
     type: annotation
 
 api_connection_check:
-    path: /api/connection_check
+    path: /connection_jwt
     
