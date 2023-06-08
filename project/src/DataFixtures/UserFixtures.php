@@ -46,8 +46,8 @@ class UserFixtures extends Fixture
     private function getHardData(): array
     {
         return [
-            ['Danny', 'Garcia', 'admin@lbi.fr', 'password'],
-            ['God', 'Kratos', 'god@of.war', 'BOY'],
+            ['Danny', 'Garcia', 'admin@lbi.fr', 'password', 'ROLE_USER'],
+            ['God', 'Kratos', 'god@of.war', 'BOY', 'ROLE_ADMIN'],
         ];
     }
 }
