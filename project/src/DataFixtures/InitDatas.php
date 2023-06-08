@@ -17,7 +17,7 @@ class InitDatas extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $filepath = '/var/www/DATA/datas/test-cinemahd-datas.sql';
+        $filepath = '/var/www/project/assets/sql/test-cinemahd-datas.sql';
         $spl = new \Symfony\Component\Finder\SplFileInfo($filepath, $filepath, $filepath);
         $sql = $spl->getContents();
 
