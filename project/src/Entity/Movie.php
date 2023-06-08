@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
+#[ApiResource]
 class Movie
 {
     #[ORM\Id]

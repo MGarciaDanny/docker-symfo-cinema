@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MovieHasTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieHasTypeRepository::class)]
+#[ApiResource]
 class MovieHasType
 {
     #[ORM\Id]

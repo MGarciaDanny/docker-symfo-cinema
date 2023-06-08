@@ -8,33 +8,42 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('email', 'Email déjà existant.')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ApiResource(normalizationContext: ['groups' => ['UserGroup']])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('UserGroup')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('UserGroup')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('UserGroup')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('UserGroup')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('UserGroup')]
     private ?string $roles = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups('UserGroup')]
     private ?\DateTimeInterface $created_at = null;
 
     public function __construct()
