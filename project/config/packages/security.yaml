@@ -1,9 +1,9 @@
 security:
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-    #bcrypt? or auto?
+        # Our user class and the algorithm we'll use to encode passwords
+        # 'auto' means to let Symfony choose the best possible password hasher (Argon2 or Bcrypt)
+        # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'bcrypt'
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     enable_authenticator_manager: true
     
     providers:
@@ -14,18 +14,16 @@ security:
     
     firewalls:
         dev:
-            pattern: ^/_(profiler|wdt)
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        api:
-            pattern: ^/api/
-            stateless: true
-            provider: app_user_provider
-            jwt: ~
+
         main:
-            stateless: true
+            # this firewall does not have a 'pattern' option because it applies to all URLs
+            lazy: true
             provider: app_user_provider
+            stateless: true
             json_login:
-                check_path: auth
+                check_path: auth # The name in routes.yaml is enough for mapping
                 username_path: email
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -35,15 +33,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        # API RESTRICTIONS
+        - { path: ^/api/, methods: [POST, PUT, PATCH, DELETE], roles: IS_AUTHENTICATED_FULLY }
+
+        # API PUBLIC
         - { path: ^/, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
         - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
         - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
         - { path: ^/auth, roles: PUBLIC_ACCESS }
-
-        # API RESTRICTIONS
-        - { path: ^/api, methods: [POST, PUT, PATCH, DELETE], roles: IS_AUTHENTICATED_FULLY }
-
-        # API PUBLIC
         - { path: ^/api, methods: [GET], roles: PUBLIC_ACCESS }
 
 
