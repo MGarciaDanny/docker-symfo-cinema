@@ -16,7 +16,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-    #[Route('/movie', name: 'app.get.movie')]
+    #[Route('/test-movie', name: 'app.get.movie')]
     public function movie(): Response
     {
         return $this->json(['movie'=>'todo']);
