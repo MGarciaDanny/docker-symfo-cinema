@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 #[ApiResource]
@@ -22,8 +21,8 @@ class Movie
     #[ORM\Column]
     private ?int $duration = null;
 
-    //__construct()
-    //preUpdate()
+    #[ORM\Column(length: 511)]
+    private ?string $picture = null;
 
     public function getId(): ?int
     {
@@ -50,6 +49,18 @@ class Movie
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

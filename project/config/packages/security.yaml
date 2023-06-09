@@ -19,8 +19,8 @@ security:
 
         main:
             # this firewall does not have a 'pattern' option because it applies to all URLs
-            lazy: true
-            provider: app_user_provider
+            # lazy: true
+            # provider: app_user_provider
             stateless: true
             json_login:
                 check_path: auth # The name in routes.yaml is enough for mapping
@@ -37,9 +37,9 @@ security:
         - { path: ^/api/, methods: [POST, PUT, PATCH, DELETE], roles: IS_AUTHENTICATED_FULLY }
 
         # API PUBLIC
-        - { path: ^/, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
-        - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
-        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
+        # - { path: ^/, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        # - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        # - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
         - { path: ^/auth, roles: PUBLIC_ACCESS }
         - { path: ^/api, methods: [GET], roles: PUBLIC_ACCESS }
 
