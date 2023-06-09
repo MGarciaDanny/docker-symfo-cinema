@@ -8,6 +8,52 @@
 	},
 	"item": [
 		{
+			"name": "Test Movie Database API",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"value": "moviesdatabase.p.rapidapi.com",
+								"type": "text"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"value": "05d0a93658mshdc80f9f1822ee21p1f70e1jsnb2d28b54f704",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://moviesdatabase.p.rapidapi.com/titles/search/title/Le voyage?exact=false",
+							"protocol": "https",
+							"host": [
+								"moviesdatabase",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"titles",
+								"search",
+								"title",
+								"Le voyage"
+							],
+							"query": [
+								{
+									"key": "exact",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Entities",
 			"item": [
 				{
@@ -22,13 +68,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/movies",
+									"raw": "{{base_url}}/api/movies/1",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
-										"movies"
+										"movies",
+										"1"
 									]
 								}
 							},
@@ -51,7 +98,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"title\": \"THE MASK\",\r\n  \"duration\": 123\r\n}",
+									"raw": "{\r\n  \"title\": \"THE PLATO\",\r\n  \"duration\": 123,\r\n  \"picture\":\"vide\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -66,6 +113,13 @@
 									"path": [
 										"api",
 										"movies"
+									],
+									"query": [
+										{
+											"key": "aaaa aaa",
+											"value": null,
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -172,52 +226,6 @@
 									"path": [
 										"api",
 										"users"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "MovieHasPeople",
-					"item": [
-						{
-							"name": "/api/movie_has_peoples",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/movie_has_peoples",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"movie_has_peoples"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "MovieHasType",
-					"item": [
-						{
-							"name": "/api/movie_has_types",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{base_url}}/api/movie_has_types",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"api",
-										"movie_has_types"
 									]
 								}
 							},
