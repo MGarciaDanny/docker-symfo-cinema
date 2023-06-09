@@ -12,15 +12,34 @@ GREEN = /bin/echo -e "\x1b[32m\#\# $1\x1b[0m"
 RED = /bin/echo -e "\x1b[31m\#\# $1\x1b[0m"
 
 ## —— 🔥 App ——
+full-init:
+	$(MAKE) docker-build
+	@$(call GREEN,"🎉 INFO : Docker has been builded 🎉 ")
+	$(MAKE) start
+	@$(call GREEN,"🎉 INFO : Docker has been started 🎉 ")
+	$(MAKE) composer-install
+	@$(call GREEN,"🎉 INFO : Composer install done 🎉 ")
+	$(MAKE) npm-install
+	@$(call GREEN,"🎉 INFO : NPM install done 🎉 ")
+	$(MAKE) npm-build
+	@$(call GREEN,"🎉 INFO : NPM Build done 🎉 ")
+	$(MAKE) database-drop
+	@$(call GREEN,"🎉 INFO : Drop database 🎉 ")
+	$(MAKE) database-create
+	@$(call GREEN,"🎉 INFO : Database created 🎉 ")
+	$(MAKE) database-migrate
+	@$(call GREEN,"🎉 INFO : Database migrated 🎉 ")
+	$(MAKE) database-fixtures-load
+	@$(call GREEN,"🎉 INFO : Database fixtures loaded 🎉 ")
+	@$(call GREEN,"🎉 INFO : YOU ARE READY TO GO ! 🎉 ")
+	@$(call GREEN,"🎉 INFO : Follow the README file again ! 🎉 ")
+
 init: ## Init the project
 	$(MAKE) start
 	$(MAKE) composer-install
 	$(MAKE) npm-install
+	$(MAKE) npm-build
 	@$(call GREEN,"The application is available at: http://127.0.0.1:8000/.")
-
-full-init: ## Init for testing the projet
-	$(MAKE) init
-	$(MAKE) database-init
 
 cache-clear: ## Clear cache
 	$(SYMFONY_CONSOLE) cache:clear
@@ -55,11 +74,16 @@ e2e-test: ## Run E2E tests
 ## —— 🐳 Docker ——
 start: ## Start app
 	$(MAKE) docker-start 
+
+docker-build: 
+	$(DOCKER_COMPOSE) build
+
 docker-start: 
 	$(DOCKER_COMPOSE) up -d
 
 stop: ## Stop app
 	$(MAKE) docker-stop
+
 docker-stop: 
 	$(DOCKER_COMPOSE) stop
 	@$(call RED,"The containers are now stopped.")
@@ -74,6 +98,9 @@ composer-update: ## Update dependencies
 ## —— 🐈 NPM —————————————————————————————————————————————————————————————————
 npm-install: ## Install all npm dependencies
 	$(NPM) install
+
+npm-build: ## Install all npm dependencies
+	$(NPM) run build
 
 npm-update: ## Update all npm dependencies
 	$(NPM) update
