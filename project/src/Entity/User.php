@@ -63,7 +63,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        $this->password = null;
     }
 
     public function setRoles(string $roles): self

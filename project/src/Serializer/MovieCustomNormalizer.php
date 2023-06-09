@@ -53,7 +53,9 @@ class MovieCustomNormalizer implements NormalizerInterface
             'id' => $object->getId(),
             'title' => $object->getTitle(),
             'duration' => $object->getDuration(),
-            'picture' => $newPicture
+            'picture' => $newPicture,
+            'movie_has_type' => $this->normalizeMovieHasType($object->getMovieHasType()),
+            'movie_has_people' => $this->normalizeMovieHasPeople($object->getMovieHasPeople()),
         ];
 
         return $data;
@@ -62,5 +64,55 @@ class MovieCustomNormalizer implements NormalizerInterface
     public function supportsNormalization($data, string $format = null)
     {
         return $data instanceof Movie;
+    }
+
+    public function supportsDenormalization($data, $type, $format = null, array $context = [])
+    {
+        return $type === Movie::class;
+    }
+
+    public function denormalize($data, $type, $format = null, array $context = [])
+    {
+        // Implement the denormalization logic if needed
+    }
+
+    private function normalizeMovieHasPeople($movieHasPeople)
+    {
+        $normalizedData = [];
+
+        foreach ($movieHasPeople as $has) {
+            $people = $has->getPeople();
+
+            $normalizedData[] = [
+                'role' => $has->getRole(),
+                'people' => [
+                    'id' => $people->getId(),
+                    'firstname' => $people->getFirstname(),
+                    'lastname' => $people->getLastname(),
+                    'date_of_birth' => $people->getDateOfBirth(),
+                    'nationality' => $people->getNationality(),
+                ],
+            ];
+        }
+
+        return $normalizedData;
+    }
+
+    private function normalizeMovieHasType($movieHasType)
+    {
+        $normalizedData = [];
+
+        foreach ($movieHasType as $movieType) {
+            $type = $movieType->getType();
+
+            $normalizedData[] = [
+                'type' => [
+                    'id' => $type->getId(),
+                    'name' => $type->getName(),
+                ],
+            ];
+        }
+
+        return $normalizedData;
     }
 }

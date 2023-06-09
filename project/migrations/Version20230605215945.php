@@ -40,7 +40,8 @@ final class Version20230605215945 extends AbstractMigration
         $this->addSql('ALTER TABLE user ADD roles VARCHAR(255) NOT NULL');
 
         // Add picture in movie
-        $this->addSql('ALTER TABLE movie ADD picture VARCHAR(511) NOT NULL');
+        $this->addSql('ALTER TABLE movie ADD picture VARCHAR(511) DEFAULT NULL');
+
     }
 
     public function down(Schema $schema): void

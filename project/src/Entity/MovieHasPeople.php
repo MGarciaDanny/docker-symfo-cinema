@@ -2,28 +2,29 @@
 
 namespace App\Entity;
 
+namespace App\Entity;
+
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MovieHasPeopleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieHasPeopleRepository::class)]
-#[ApiResource]
 class MovieHasPeople
 {
     const SIGNIFICANCE = ['PRINCIPAL', 'SECONDAIRE'];
 
     #[ORM\Id]
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Movie::class, inversedBy: "movieHasPeople")]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Movie $movie = null;
+    private $movie;
 
     #[ORM\Id]
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: People::class, inversedBy: "movieHasPeople")]
     #[ORM\JoinColumn(nullable: false)]
-    private ?People $people = null;
+    private $people;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    #[ORM\Column(type: "string", length: 255)]
+    private $role;
 
     #[ORM\Column(nullable: true, columnDefinition: "enum('PRINCIPAL','SECONDAIRE')")]
     private ?string $significance = null;
@@ -51,6 +52,7 @@ class MovieHasPeople
 
         return $this;
     }
+
     public function getRole(): ?string
     {
         return $this->role;

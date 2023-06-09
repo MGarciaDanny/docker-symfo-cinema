@@ -2,21 +2,19 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MovieHasTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieHasTypeRepository::class)]
-#[ApiResource]
 class MovieHasType
 {
     #[ORM\Id]
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Movie::class, inversedBy: "movieHasTypes")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Movie $movie = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Type::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
