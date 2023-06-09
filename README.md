@@ -11,3 +11,4 @@
 3. Accès à PhpMyAdmin : [http://127.0.0.1:8080](http://127.0.0.1:8080)
    - User : root
    - Password : [laisser vide]
+4. Si vous avez un problème lors de l'installation n'hésitez pas à me contacter.
